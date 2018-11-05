@@ -1,0 +1,36 @@
+Base_Category 	Default Category
+BASE_Type 	STOCKABLE,SERVICE
+BASE_Uom 	kg/s,pc/s,bag/s
+BASE_Location 	STORE,WAREHOUSE
+BASE_Vendor 	Default
+BASE_Customer 	Default
+BASE_User 	default
+BASE_Bank 	default
+base_bankaccount default
+base_expense 	default
+base_fund 	default
+base_terms	CASH
+
+Global_DocNoFormat
+DocNoFormatId	NextNumber	Prefix
+1		1		PO-
+2		1		SO-
+3		1		POS-
+4		1		WS-
+5		1		CA-
+
+Global_DocStatus
+StatusId	Status
+1		Open
+2		Completed
+3		Paid
+4		Cancelled
+
+POS_Settings
+POSSettingsId	AllowNegativeINv	LocationId
+1		True			1 -"STORE"
+
+BASE_UserRole
+1 	Super Admin
+2	admin
+3	Cashier
