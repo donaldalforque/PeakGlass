@@ -185,7 +185,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   133038082
+         Format          =   133431298
          UpDown          =   -1  'True
          CurrentDate     =   42217
       End
@@ -207,7 +207,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   133038081
+         Format          =   133431297
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker DateFrom 
@@ -228,7 +228,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   133038081
+         Format          =   133431297
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker TimeTo 
@@ -249,7 +249,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   133038082
+         Format          =   133431298
          UpDown          =   -1  'True
          CurrentDate     =   42217
       End
@@ -549,23 +549,31 @@ Private Sub btnGenerate_Click()
     If cmbType.ListIndex = 0 Then
         Set crxRpt = crxApp.OpenReport(App.Path & "\Reports\POS_SalesSummary.rpt")
     Else
-        Set crxRpt = crxApp.OpenReport(App.Path & "\Reports\POS_SalesAccountSummary.rpt")
+        Set crxRpt = crxApp.OpenReport(App.Path & "\Reports\POS_AccountCollectionSummary.rpt")
     End If
     crxRpt.EnableParameterPrompting = False
     crxRpt.DiscardSavedData
     Call ResetRptDB(crxRpt)
     
+    If cmbType.ListIndex = 0 Then
+        crxRpt.ParameterFields.GetItemByName("@SetId").AddCurrentValue cmbSet.ItemData(cmbSet.ListIndex)
+        crxRpt.ParameterFields.GetItemByName("@Sort").AddCurrentValue cmbSort.text
+    End If
+    
+    crxRpt.ParameterFields.GetItemByName("CurrentSet").AddCurrentValue cmbSet.text
+    crxRpt.ParameterFields.GetItemByName("@TimeFrom").AddCurrentValue Str(TimeFrom.value)
+    crxRpt.ParameterFields.GetItemByName("@TimeTo").AddCurrentValue Str(TimeTo.value)
+    
+    
     crxRpt.ParameterFields.GetItemByName("ReportTitle").AddCurrentValue txtTitle.text
     crxRpt.ParameterFields.GetItemByName("DateFrom").AddCurrentValue DateFrom.value & " " & TimeFrom.value
     crxRpt.ParameterFields.GetItemByName("DateTo").AddCurrentValue DateTo.value & " " & TimeTo.value
-    crxRpt.ParameterFields.GetItemByName("CurrentSet").AddCurrentValue cmbSet.text
     
-    crxRpt.ParameterFields.GetItemByName("@SetId").AddCurrentValue cmbSet.ItemData(cmbSet.ListIndex)
+    
+    
     crxRpt.ParameterFields.GetItemByName("@DateFrom").AddCurrentValue DateFrom.value
     crxRpt.ParameterFields.GetItemByName("@DateTo").AddCurrentValue DateTo.value
-    crxRpt.ParameterFields.GetItemByName("@TimeFrom").AddCurrentValue Str(TimeFrom.value)
-    crxRpt.ParameterFields.GetItemByName("@TimeTo").AddCurrentValue Str(TimeTo.value)
-    crxRpt.ParameterFields.GetItemByName("@Sort").AddCurrentValue cmbSort.text
+    
     
     CRViewer.ReportSource = crxRpt
     CRViewer.ViewReport
