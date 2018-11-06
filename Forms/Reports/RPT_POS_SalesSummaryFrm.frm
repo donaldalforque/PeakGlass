@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{C4847593-972C-11D0-9567-00A0C9273C2A}#8.0#0"; "crviewer.dll"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form RPT_POS_SalesSummaryFrm 
    Caption         =   "POS Sales Summary"
    ClientHeight    =   9015
@@ -20,7 +20,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
       TabIndex        =   2
       Top             =   0
       Width           =   3855
-      Begin VB.ComboBox cmbSet 
+      Begin VB.ComboBox cmbType 
          BeginProperty Font 
             Name            =   "Calibri"
             Size            =   9.75
@@ -33,10 +33,30 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
          Height          =   345
          ItemData        =   "RPT_POS_SalesSummaryFrm.frx":0000
          Left            =   1320
-         List            =   "RPT_POS_SalesSummaryFrm.frx":001B
+         List            =   "RPT_POS_SalesSummaryFrm.frx":000A
+         Style           =   2  'Dropdown List
+         TabIndex        =   23
+         Top             =   2400
+         Width           =   2415
+      End
+      Begin VB.ComboBox cmbSet 
+         BeginProperty Font 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   345
+         ItemData        =   "RPT_POS_SalesSummaryFrm.frx":001C
+         Left            =   1320
+         List            =   "RPT_POS_SalesSummaryFrm.frx":0037
          Style           =   2  'Dropdown List
          TabIndex        =   21
-         Top             =   2400
+         Top             =   2760
+         Visible         =   0   'False
          Width           =   2415
       End
       Begin VB.ComboBox cmbCashier 
@@ -50,9 +70,9 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Strikethrough   =   0   'False
          EndProperty
          Height          =   345
-         ItemData        =   "RPT_POS_SalesSummaryFrm.frx":004D
+         ItemData        =   "RPT_POS_SalesSummaryFrm.frx":0069
          Left            =   1320
-         List            =   "RPT_POS_SalesSummaryFrm.frx":004F
+         List            =   "RPT_POS_SalesSummaryFrm.frx":006B
          Style           =   2  'Dropdown List
          TabIndex        =   8
          Top             =   6600
@@ -72,7 +92,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
          Height          =   330
          Left            =   1320
          TabIndex        =   7
-         Top             =   3960
+         Top             =   4080
          Width           =   2415
       End
       Begin VB.CommandButton btnGenerate 
@@ -89,7 +109,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
          Height          =   375
          Left            =   1920
          TabIndex        =   6
-         Top             =   4680
+         Top             =   5160
          Width           =   1815
       End
       Begin VB.ComboBox cmbSort 
@@ -103,12 +123,12 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Strikethrough   =   0   'False
          EndProperty
          Height          =   345
-         ItemData        =   "RPT_POS_SalesSummaryFrm.frx":0051
+         ItemData        =   "RPT_POS_SalesSummaryFrm.frx":006D
          Left            =   1320
-         List            =   "RPT_POS_SalesSummaryFrm.frx":0064
+         List            =   "RPT_POS_SalesSummaryFrm.frx":0080
          Style           =   2  'Dropdown List
          TabIndex        =   5
-         Top             =   3600
+         Top             =   3720
          Width           =   2415
       End
       Begin VB.OptionButton optOrderDate 
@@ -165,7 +185,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   84606978
+         Format          =   133038082
          UpDown          =   -1  'True
          CurrentDate     =   42217
       End
@@ -187,7 +207,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   84606977
+         Format          =   133038081
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker DateFrom 
@@ -208,7 +228,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   84606977
+         Format          =   133038081
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker TimeTo 
@@ -229,9 +249,28 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   84606978
+         Format          =   133038082
          UpDown          =   -1  'True
          CurrentDate     =   42217
+      End
+      Begin VB.Label Label9 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Type"
+         BeginProperty Font 
+            Name            =   "Calibri"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   270
+         Left            =   120
+         TabIndex        =   24
+         Top             =   2400
+         Width           =   450
       End
       Begin VB.Label Label8 
          AutoSize        =   -1  'True
@@ -249,7 +288,8 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
          Height          =   270
          Left            =   120
          TabIndex        =   22
-         Top             =   2400
+         Top             =   2760
+         Visible         =   0   'False
          Width           =   300
       End
       Begin VB.Label Label3 
@@ -345,7 +385,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
          Height          =   345
          Left            =   120
          TabIndex        =   16
-         Top             =   3120
+         Top             =   3240
          Width           =   870
       End
       Begin VB.Label Label5 
@@ -364,7 +404,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
          Height          =   270
          Left            =   120
          TabIndex        =   15
-         Top             =   3960
+         Top             =   4080
          Width           =   1095
       End
       Begin VB.Label Label6 
@@ -383,7 +423,7 @@ Begin VB.Form RPT_POS_SalesSummaryFrm
          Height          =   270
          Left            =   120
          TabIndex        =   14
-         Top             =   3600
+         Top             =   3720
          Width           =   645
       End
       Begin VB.Label Label10 
@@ -506,7 +546,11 @@ Private Sub btnGenerate_Click()
     Dim Status, Customer, Terms, DateRange As Variant
     
     Screen.MousePointer = vbHourglass
-    Set crxRpt = crxApp.OpenReport(App.Path & "\Reports\POS_SalesSummary.rpt")
+    If cmbType.ListIndex = 0 Then
+        Set crxRpt = crxApp.OpenReport(App.Path & "\Reports\POS_SalesSummary.rpt")
+    Else
+        Set crxRpt = crxApp.OpenReport(App.Path & "\Reports\POS_SalesAccountSummary.rpt")
+    End If
     crxRpt.EnableParameterPrompting = False
     crxRpt.DiscardSavedData
     Call ResetRptDB(crxRpt)
@@ -549,6 +593,14 @@ End Sub
 
 
 
+Private Sub cmbType_Click()
+    If cmbType.ListIndex = 0 Then
+        txtTitle.text = "POS Sales Summary"
+    Else
+        txtTitle.text = "POS Account Collection Summary"
+    End If
+End Sub
+
 Private Sub CRViewer_PrintButtonClicked(UseDefault As Boolean)
     UseDefault = False
     crxRpt.PrinterSetup Me.hWnd
@@ -578,7 +630,7 @@ Private Sub Form_Load()
         If rec!isActive = "True" Then
             Do Until rec.EOF
                 cmbSet.AddItem rec!SetName
-                cmbSet.ItemData(cmbSet.NewIndex) = rec!setid
+                cmbSet.ItemData(cmbSet.NewIndex) = rec!SetId
                 rec.MoveNext
             Loop
         Else
@@ -604,6 +656,8 @@ Private Sub Form_Load()
     lvItemList.ColumnHeaders(2).width = lvItemList.width * 0.2
     lvItemList.ColumnHeaders(3).width = lvItemList.width * 0.76
     lvItemList.ColumnHeaders(4).width = lvItemList.width * 0
+    
+    cmbType.ListIndex = 0
 End Sub
 
 
