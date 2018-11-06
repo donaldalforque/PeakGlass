@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form INV_AuditStockFrm 
    BorderStyle     =   3  'Fixed Dialog
@@ -210,7 +210,7 @@ Begin VB.Form INV_AuditStockFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   92340225
+         Format          =   138149889
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker DateFrom 
@@ -231,7 +231,7 @@ Begin VB.Form INV_AuditStockFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   92340225
+         Format          =   138149889
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker TimeFrom 
@@ -252,7 +252,7 @@ Begin VB.Form INV_AuditStockFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   92340226
+         Format          =   138149890
          UpDown          =   -1  'True
          CurrentDate     =   41686
       End
@@ -274,7 +274,7 @@ Begin VB.Form INV_AuditStockFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   92340226
+         Format          =   138149890
          UpDown          =   -1  'True
          CurrentDate     =   41686
       End
@@ -702,7 +702,7 @@ Begin VB.Form INV_AuditStockFrm
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   92340225
+            Format          =   138149889
             CurrentDate     =   41509
          End
          Begin MSComCtl2.DTPicker dtTime 
@@ -724,7 +724,7 @@ Begin VB.Form INV_AuditStockFrm
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   92340226
+            Format          =   138149890
             UpDown          =   -1  'True
             CurrentDate     =   41509
          End
@@ -1544,7 +1544,7 @@ End Sub
 Private Sub Save(ByVal iStatusId As Integer, Optional isReopen As Variant)
     If lvItems.ListItems.Count > 0 Then
         
-        'On Error GoTo ErrorHandler
+        On Error GoTo ErrorHandler
         
         Dim item As MSComctlLib.ListItem
         Set con = New ADODB.Connection
@@ -1675,15 +1675,15 @@ Private Sub Save(ByVal iStatusId As Integer, Optional isReopen As Variant)
         MsgBox "Save failed. No data found.", vbCritical, "PeakPOS"
     End If
     Exit Sub
-'ErrorHandler:
-'    con.RollbackTrans
-'    con.Close
-'    If IsNumeric(Err.Description) = True Then
-'        GLOBAL_MessageFrm.lblErrorMessage.Caption = ErrorCodes(0) & " " & ErrorCodes(Val(Err.Description))
-'    Else
-'        GLOBAL_MessageFrm.lblErrorMessage.Caption = ErrorCodes(0) & " " & Err.Description
-'    End If
-'    GLOBAL_MessageFrm.Show (1)
+ErrorHandler:
+    con.RollbackTrans
+    con.Close
+    If IsNumeric(Err.Description) = True Then
+        GLOBAL_MessageFrm.lblErrorMessage.Caption = ErrorCodes(0) & " " & ErrorCodes(Val(Err.Description))
+    Else
+        GLOBAL_MessageFrm.lblErrorMessage.Caption = ErrorCodes(0) & " " & Err.Description
+    End If
+    GLOBAL_MessageFrm.Show (1)
 End Sub
 
 Public Sub Populate(ByVal data As String)
