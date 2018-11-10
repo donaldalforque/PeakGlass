@@ -515,6 +515,7 @@ Private Sub btnAdd_Click()
     ProductSet.Fields.Append "Price", adDecimal
                ProductSet.Fields("Price").Precision = 18
                ProductSet.Fields("Price").NumericScale = 2
+    ProductSet.Fields.Append "Unit", adVarChar, 4000
     ProductSet.Open
 
     For Each item In lvAdd.ListItems
@@ -524,6 +525,7 @@ Private Sub btnAdd_Click()
         ProductSet!Name = item.SubItems(2)
         ProductSet!cost = item.SubItems(3)
         ProductSet!price = item.SubItems(4)
+        ProductSet!Unit = item.SubItems(6)
         ProductSet.Update
     Next
     
@@ -560,7 +562,7 @@ Private Sub btnSearch_Click()
     cmd.CommandType = adCmdStoredProc
     cmd.CommandText = "BASE_Product_Search5"
     cmd.Parameters.Append cmd.CreateParameter("@ItemCode", adVarChar, adParamInput, 50, txtItemCode.text)
-    cmd.Parameters.Append cmd.CreateParameter("@Name", adVarChar, adParamInput, 250, txtname.text)
+    cmd.Parameters.Append cmd.CreateParameter("@Name", adVarChar, adParamInput, 250, txtName.text)
     If cmbCategory.ListIndex = 0 Then
         cmd.Parameters.Append cmd.CreateParameter("@CategoryId", adInteger, adParamInput, , Null)
     Else

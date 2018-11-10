@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form INV_StockOutFrm 
    BorderStyle     =   1  'Fixed Single
@@ -229,7 +229,7 @@ Begin VB.Form INV_StockOutFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   96141313
+         Format          =   94568449
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker DateFrom 
@@ -250,7 +250,7 @@ Begin VB.Form INV_StockOutFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   96141313
+         Format          =   94568449
          CurrentDate     =   41686
       End
       Begin VB.Label Label26 
@@ -452,7 +452,7 @@ Begin VB.Form INV_StockOutFrm
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   96141313
+            Format          =   94568449
             CurrentDate     =   41509
          End
          Begin VB.Label Label5 
@@ -1141,18 +1141,19 @@ Private Sub Initialize()
     
     On Error Resume Next
     txtItemSearch.SetFocus
+    cmbCustomer.ListIndex = 0
     
     LoadImageStatus picStatus, GetStatus(StatusId)
 End Sub
 Public Sub CountTotal()
     Dim item As MSComctlLib.ListItem
-    Dim total As Double
+    Dim Total As Double
     
     For Each item In lvItems.ListItems
         item.SubItems(11) = FormatNumber(NVAL(item.SubItems(6)) * NVAL(item.SubItems(10)), 2, vbTrue, vbFalse)
-        total = total + NVAL(item.SubItems(11))
+        Total = Total + NVAL(item.SubItems(11))
     Next
-    lblTotal.Caption = FormatNumber(total, 2, vbTrue, vbFalse)
+    lblTotal.Caption = FormatNumber(Total, 2, vbTrue, vbFalse)
 End Sub
 Private Sub btnComplete_Click()
 '    If EditAccessRights(28) = False Then
@@ -1368,6 +1369,11 @@ Private Sub SelectOrders()
         StatusId = rec!StatusId
         txtStatus.text = rec!Status
         StockOutId = rec!StockOutId
+        If rec!Customer <> "" Then
+            cmbCustomer.text = rec!Customer
+        Else
+            cmbCustomer.ListIndex = 0
+        End If
     End If
     
     'Get Line
@@ -1388,7 +1394,7 @@ Private Sub SelectOrders()
                 item.SubItems(4) = rec!itemcode
                 item.SubItems(5) = rec!Name
                 item.SubItems(6) = FormatNumber(rec!Quantity, 2, vbTrue, vbFalse)
-                item.SubItems(7) = rec!unit
+                item.SubItems(7) = rec!Unit
                 item.SubItems(8) = rec!lotnumber
                 If Not IsNull(rec!expirydate) Then
                     item.SubItems(9) = Format(rec!expirydate, "MM/DD/YY")
