@@ -4,7 +4,7 @@ Sub Main()
     'Get Settings
     GetInventorySettings
     
-    BASE_UserLoginFrm.Show
-    'POS_UserLoginFrm.Show
+    'BASE_UserLoginFrm.Show
+    POS_UserLoginFrm.Show
 End Sub
 
