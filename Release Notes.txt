@@ -1,10 +1,15 @@
 Version 1.0.67
+
+	**Modules**
 	- Fixed Bug on module new stock, supplier not displayed when completed
 	- Fixed Bug on module new stock, supplier details remain even after clicking new
 	- Fixed Bug on module audit stock, unit not displaying
 	- Fixed Bug on module new product, disabled location still displays in the inventory section
 	- Fixed Bug on POS, zreading not showing sales return data.
 
+	**Reports**
+	- Fixed Bug on report New Stock, supplier data not displaying		
+	- Fixed Bug on report Stock Out, customer data not displaying
 
 Versin 1.0.66
 
