@@ -984,7 +984,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public isAllowNegativeInv As Boolean
 Public POSLocationId As Integer
-Public TotalDiscount As Double
+Public totaldiscount As Double
 Public POSCustomerId As Long
 Dim DiscountPass, SalesReturnPass, PayoutPass, ReprintPass, ItemDeletePass, VoidOrderPass, XreadingPass, ZReadingPass, PriceChangePass As Boolean
 Dim CurrentPricingSchemeId As Integer
@@ -1002,7 +1002,7 @@ Public Sub Initialize()
     CountTotal
     btnBarcode_Click
     POSCustomerId = 0
-    TotalDiscount = 0
+    totaldiscount = 0
     CurrentPricingSchemeId = 0
     CurrentSetid = 1
     salesreturn = False

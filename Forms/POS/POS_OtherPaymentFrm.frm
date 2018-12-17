@@ -241,6 +241,12 @@ Private Sub btnAccept_Click()
             POS_ConfirmPaymentFrm.Show (1)
             If AllowAccess = False Then Exit Sub
         
+            Dim totaldiscount As Double
+            Dim item As MSComctlLib.ListItem
+            For Each item In POS_CashierFrm.lvList.ListItems
+                totaldiscount = totaldiscount + NVAL(item.SubItems(4))
+            Next
+        
             Dim SalesOrderId As Long
             
             'Save to Order
@@ -285,7 +291,7 @@ Private Sub btnAccept_Click()
             cmd.Parameters.Append cmd.CreateParameter("@ReferenceNumber", adVarChar, adParamInput, 250, txtReferenceNumber.text)
             cmd.Parameters.Append cmd.CreateParameter("@GatePass", adVarChar, adParamInput, 250, txtReferenceNumber.text)
             'cmd.Parameters.Append cmd.CreateParameter("@LastUser", adVarChar, adParamInput, 400, CurrentUser)
-            cmd.Parameters.Append cmd.CreateParameter("@Discount", adDecimal, adParamInput, , 0)
+            cmd.Parameters.Append cmd.CreateParameter("@Discount", adDecimal, adParamInput, , totaldiscount)
                                   cmd.Parameters("@Discount").Precision = 18
                                   cmd.Parameters("@Discount").NumericScale = 2
             cmd.Parameters.Append cmd.CreateParameter("@FundId", adInteger, adParamInput, , 1) 'NOT SET!
@@ -298,7 +304,7 @@ Private Sub btnAccept_Click()
             
             'Line
             'SAVE ORDER LINE
-            Dim item As MSComctlLib.ListItem
+            'Dim item As MSComctlLib.ListItem
     
             For Each item In POS_CashierFrm.lvList.ListItems
                 Set cmd = New ADODB.Command

@@ -316,7 +316,7 @@ Begin VB.Form INV_NewStockFrm
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Format          =   94568449
+            Format          =   143261697
             CurrentDate     =   41509
          End
          Begin VB.Label Label15 
@@ -999,7 +999,7 @@ Begin VB.Form INV_NewStockFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   94568449
+         Format          =   143261697
          CurrentDate     =   41686
       End
       Begin MSComCtl2.DTPicker DateFrom 
@@ -1020,7 +1020,7 @@ Begin VB.Form INV_NewStockFrm
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Format          =   94568449
+         Format          =   143261697
          CurrentDate     =   41686
       End
       Begin VB.Label Label14 
